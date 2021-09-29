@@ -35,6 +35,13 @@ and (grade >= 0 and grade <=10):
 {average_students_grade} \nКурсы в процессе изучения: {self.courses_in_progress} \n\
 Завершенные курсы: {self.finished_courses}'
         return res
+# Реалиазация магического метода сравнения для студентов
+    def __lt__(self, other):
+        print('ДВА ЭКЗЕМПЛЯРА КЛАССА СТУДЕНТОВ (в порядке убывания средней оценки за домашнее задание магическим методом):')
+        if average(self.grades) > average(other.grades):
+            print(f'{Ivan_Ivanov} \n{Anna_Petrova}')
+        else:
+            print(f'{Anna_Petrova} \n{Ivan_Ivanov}')
 
 class Mentor:
     def __init__(self, name, surname):
@@ -58,6 +65,12 @@ class Lecturer(Mentor):
         average_lecturer_grade = average(self.grades)
         res = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за лекции: {average_lecturer_grade}'
         return res
+    def __lt__(self, other):
+        print('ДВА ЭКЗЕМПЛЯРА КЛАССА ЛЕКТОРОВ (в порядке убывания средней оценки за лекции магическим методом):')
+        if average(Stas_Medvedev.grades) > average (Kate_Novikova.grades):
+            print(f'{Stas_Medvedev} \n{Kate_Novikova}')
+        else:
+            print(f'{Kate_Novikova} \n{Stas_Medvedev}')
 
 #Создание нового класса экспертов в соответствии с условиями задачи №1
 class Reviewer(Mentor):
@@ -95,11 +108,7 @@ Anna_Petrova.grades = {'Экономика':[5,5,5,5],
                       'Информатика': [7,7,7,7],
                       'Физика': [8, 8, 8, 8],
                       'Химия': [9,9,9,9]}
-print('ДВА ЭКЗЕМПЛЯРА КЛАССА СТУДЕНТОВ (в порядке убывания средней оценки за домашнее задание):')
-if average(Ivan_Ivanov.grades) > average (Anna_Petrova.grades):
-    print(f'{Ivan_Ivanov} \n{Anna_Petrova}')
-else:
-    print(f'{Anna_Petrova} \n{Ivan_Ivanov}')
+Ivan_Ivanov.__lt__(Anna_Petrova)
 
 #Создание 2 экземпляра класса лекторов c реализацией возможности сравнения по средней оценке за лекции
 Stas_Medvedev = Lecturer('Станислав','Медведев', ['Экономика'])
@@ -108,11 +117,7 @@ Stas_Medvedev.grades = {'Экономика':[7.0,8.0,9.0,5.0]}
 Kate_Novikova = Lecturer('Екатерина','Новикова', ['Право'])
 Kate_Novikova.courses_attached = ['Право']
 Kate_Novikova.grades = {'Право': [3,10,5,7,5,9]}
-print('ДВА ЭКЗЕМПЛЯРА КЛАССА ЛЕКТОРОВ (в порядке убывания средней оценки за лекции):')
-if average(Stas_Medvedev.grades) > average (Kate_Novikova.grades):
-    print(f'{Stas_Medvedev} \n{Kate_Novikova}')
-else:
-    print(f'{Kate_Novikova} \n{Stas_Medvedev}')
+Stas_Medvedev.__lt__(Kate_Novikova)
 #Создание 2 экземпляра класса экспертов
 Karl_Lewis = Reviewer('Карл', 'Льюис', ['Химия'])
 Ben_Johnson = Reviewer('Бен', 'Джонсон', ['Физика'])
